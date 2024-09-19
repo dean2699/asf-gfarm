@@ -1,19 +1,31 @@
-/* styles.css */
-
 /* Global Styles */
 body {
     margin: 0;
     font-family: 'Proxima Nova', sans-serif;
-    background-color: #f4f4f4;
 }
 
-/* Navbar Styling with Side Margins */
+/* Full-page section styling */
+section {
+    height: 100vh; /* Full-screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navbar Styling */
 .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #191919; /* Stick with your theme */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px; /* Add padding on the left and right sides */
-    background-color: #000; /* Adjust to fit your theme */
+    padding: 20px 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Logo Container */
@@ -67,154 +79,103 @@ body {
     text-decoration: underline;
 }
 
-/* style.css */
-
 /* Hero Section */
 .hero {
     position: relative;
     width: 100%;
-    overflow: hidden;
-}
-
-.slider {
-    position: relative;
-    width: 100%;
-    height: 400px; /* Adjust as needed */
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    width: 300%; /* Adjust based on number of slides */
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    width: 100%;
-    height: 100%;
+    height: 100vh; /* Full viewport height */
+    background-image: url('../images/hero1.jpg'); /* Adjust path based on CSS location */
     background-size: cover;
     background-position: center;
-}
-
-.slider-navigation {
-    position: absolute;
-    top: 50%;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Text color to ensure readability */
+    text-align: center;
+    padding: 0 20px; /* Adjust padding if needed */
 }
 
-.prev, .next {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    cursor: pointer;
+/* Logo in Hero Section */
+.hero-logo {
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 20px; /* Space below the logo */
 }
 
-/* Slider Navigation (Prev/Next) */
-.slider-navigation {
-    position: absolute;
-    top: 50%;
-    width: 100%;
+/* Hero Section Heading and Buttons */
+.hero-content h1 {
+    font-size: 2.5em; /* Adjust size as needed */
+    margin: 10px 0;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin: 10px 0 20px;
+}
+
+.hero-content .hero-buttons {
+    margin-top: 20px;
+}
+
+.hero-buttons a {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #009700;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero-buttons a:hover {
+    background-color: #007700; /* Darker shade on hover */
+}
+
+/* Mission and Vision Section */
+.mission-vision {
+    background-color: #faf9f6;
     display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+    align-items: center;
+    padding: 50px;
 }
 
-.slider-navigation .prev,
-.slider-navigation .next {
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
+.mission-vision .logo {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
 }
 
-/* Responsive Design for Mobile */
-@media (max-width: 768px) {
-    nav ul {
-        display: none; /* Hide the menu on mobile */
-    }
-
-    nav .logo img {
-        width: 120px; /* Smaller logo for mobile */
-    }
-
-    /* Hamburger Menu */
-    nav::before {
-        content: '☰';
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 10px;
-    }
-
-    /* Show navigation on click (simple CSS for now, JavaScript can be added for functionality) */
-    nav.active ul {
-        display: flex;
-        flex-direction: column;
-        background-color: black;
-        position: absolute;
-        top: 50px;
-        right: 0;
-        width: 100%;
-        text-align: right;
-    }
-
-    nav.active ul li {
-        margin: 10px 20px;
-    }
-
-    /* Hero Section for Mobile */
-    .hero {
-        height: 60vh; /* Adjust height for smaller screens */
-    }
-
-    .slider-navigation .prev,
-    .slider-navigation .next {
-        font-size: 20px; /* Smaller arrows */
-        padding: 10px;
-    }
+.mission-vision .text {
+    max-width: 600px;
 }
 
-@media (max-width: 480px) {
-    nav::before {
-        font-size: 25px; /* Even smaller for very small screens */
-    }
-
-    nav .logo img {
-        width: 100px;
-    }
-
-    .hero {
-        height: 50vh; /* More height reduction for mobile */
-    }
-
-    .slider-navigation .prev,
-    .slider-navigation .next {
-        font-size: 18px;
-        padding: 8px;
-    }
+.mission-vision blockquote {
+    font-style: italic;
+    font-size: 1.2em;
+    color: #333;
 }
 
-/* Business Activities Section */
+/* Activity Cards Section */
 .activities {
-    padding: 20px;
+    padding: 50px 20px; /* Increase padding if needed */
     background-color: #f4f4f4; /* Optional: light background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .activity-cards {
     display: flex;
     flex-wrap: wrap;
+    position: absolute;
     gap: 20px;
+    max-width: 1200px; /* Adjust based on desired width */
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 20px);
+    flex: 1 1 calc(33.333% - 20px); /* Adjust card size */
     box-sizing: border-box;
     background: white;
     border: 1px solid #ddd;
@@ -237,4 +198,101 @@ body {
 
 .card p {
     font-size: 1em;
+}
+
+.card p {
+    font-size: 1em;
+}
+/* Breeds Carousel */
+.breeds-showcase {
+    background-color: #faf9f6;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+}
+
+.carousel img {
+    width: 200px;
+    height: 200px;
+    margin: 0 10px;
+}
+
+/* Store Summary Section */
+.store-summary {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.shop-now {
+    padding: 10px 20px;
+    background-color: #009700;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+/* Contact Section */
+.contact {
+    background-color: #faf9f6;
+    padding: 20px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#contact-form input, #contact-form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+#contact-form button {
+    padding: 10px;
+    background-color: #009700;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .hero-logo {
+        width: 200px; /* Adjust logo size for mobile */
+    }
+
+    .hero-buttons .btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+    .mission-vision .logo {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 20px 5px; /* Adjust for very small screens */
+    }
+
+    .hero-logo {
+        width: 150px;
+    }
+
+    .hero-buttons .btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
 }
