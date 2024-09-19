@@ -1,0 +1,240 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Proxima Nova', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Navbar Styling with Side Margins */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px; /* Add padding on the left and right sides */
+    background-color: #000; /* Adjust to fit your theme */
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Image */
+.logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Logo Text */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.logo-text h2 {
+    margin: 0;
+    font-size: 1em;
+    color: #fff;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+/* style.css */
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust as needed */
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    width: 300%; /* Adjust based on number of slides */
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.slider-navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.prev, .next {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Slider Navigation (Prev/Next) */
+.slider-navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.slider-navigation .prev,
+.slider-navigation .next {
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Hide the menu on mobile */
+    }
+
+    nav .logo img {
+        width: 120px; /* Smaller logo for mobile */
+    }
+
+    /* Hamburger Menu */
+    nav::before {
+        content: '☰';
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+
+    /* Show navigation on click (simple CSS for now, JavaScript can be added for functionality) */
+    nav.active ul {
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    nav.active ul li {
+        margin: 10px 20px;
+    }
+
+    /* Hero Section for Mobile */
+    .hero {
+        height: 60vh; /* Adjust height for smaller screens */
+    }
+
+    .slider-navigation .prev,
+    .slider-navigation .next {
+        font-size: 20px; /* Smaller arrows */
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav::before {
+        font-size: 25px; /* Even smaller for very small screens */
+    }
+
+    nav .logo img {
+        width: 100px;
+    }
+
+    .hero {
+        height: 50vh; /* More height reduction for mobile */
+    }
+
+    .slider-navigation .prev,
+    .slider-navigation .next {
+        font-size: 18px;
+        padding: 8px;
+    }
+}
+
+/* Business Activities Section */
+.activities {
+    padding: 20px;
+    background-color: #f4f4f4; /* Optional: light background */
+}
+
+.activity-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+.card p {
+    font-size: 1em;
+}
