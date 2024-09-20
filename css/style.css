@@ -6,7 +6,7 @@ body {
 
 /* Full-page section styling */
 section {
-    height: 100vh; /* Full-screen height */
+    height: 60vh; /* Full-screen height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,46 +79,46 @@ section {
     text-decoration: underline;
 }
 
-/* Hero Section */
+ /* Hero Section */
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh; /* Full viewport height */
-    background-image: url('../images/hero1.jpg'); /* Adjust path based on CSS location */
+    height: 70vh; /* Full viewport height */
     background-size: cover;
     background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff; /* Text color to ensure readability */
+    color: #faf9f6; /* Text color to ensure readability */
     text-align: center;
     padding: 0 20px; /* Adjust padding if needed */
-}
-
-/* Logo in Hero Section */
-.hero-logo {
+    transition: background-image 0.5s; /* Add transition effect for background image */
+  }
+  
+  /* Logo in Hero Section */
+  .hero-logo {
     width: 300px; /* Adjust size as needed */
     height: auto;
     margin-bottom: 20px; /* Space below the logo */
-}
-
-/* Hero Section Heading and Buttons */
-.hero-content h1 {
+  }
+  
+  /* Hero Section Heading and Buttons */
+  .hero-content h1 {
     font-size: 2.5em; /* Adjust size as needed */
     margin: 10px 0;
-}
-
-.hero-content p {
+  }
+  
+  .hero-content p {
     font-size: 1.5em;
     margin: 10px 0 20px;
-}
-
-.hero-content .hero-buttons {
+  }
+  
+  .hero-content .hero-buttons {
     margin-top: 20px;
-}
-
-.hero-buttons a {
+  }
+  
+  .hero-buttons a {
     display: inline-block;
     margin: 0 10px;
     padding: 15px 30px;
@@ -127,11 +127,11 @@ section {
     background-color: #009700;
     text-decoration: none;
     border-radius: 5px;
-}
-
-.hero-buttons a:hover {
+  }
+  
+  .hero-buttons a:hover {
     background-color: #007700; /* Darker shade on hover */
-}
+  }
 
 /* Mission and Vision Section */
 .mission-vision {
@@ -158,67 +158,47 @@ section {
 }
 
 /* Activity Cards Section */
-.activities {
-    padding: 50px 20px; /* Increase padding if needed */
-    background-color: #f4f4f4; /* Optional: light background */
+.card-section {
     display: flex;
     justify-content: center;
-    align-items: center;
-}
+    gap: 20px; /* Gap between cards */
+    margin: 20px; /* Margin on left and right */
+  }
 
-.activity-cards {
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    gap: 20px;
-    max-width: 1200px; /* Adjust based on desired width */
-}
-
-.card {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust card size */
-    box-sizing: border-box;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
+  .card {
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
     text-align: center;
-    padding: 10px;
-}
+    overflow: hidden;
+    transition: transform 0.2s;
+    padding: 16px; /* Increased padding to 16px */
+    border-radius: 16px; /* Added border-radius to .card */
+  }
 
-.card img {
-    width: 100%;
-    height: auto;
+  .card:hover {
+    transform: scale(1.05); /* Scale on hover */
+  }
+
+  .card img {
     display: block;
-}
+    margin: 0 auto;
+    width: 360px;
+    height: 310px;
+    border-radius: 16px;
+    padding: 0; /* Removed padding from .card img */
+  }
 
-.card h3 {
-    margin: 10px 0 5px;
-    font-size: 1.2em;
-}
+  .card h2 {
+    margin: 10px 0;
+  }
 
-.card p {
-    font-size: 1em;
-}
+  .card p {
+    padding: 0 10px;
+    color: #666;
+  }
 
-.card p {
-    font-size: 1em;
-}
-/* Breeds Carousel */
-.breeds-showcase {
-    background-color: #faf9f6;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: scroll;
-    gap: 10px;
-}
-
-.carousel img {
-    width: 200px;
-    height: 200px;
-    margin: 0 10px;
-}
 
 /* Store Summary Section */
 .store-summary {

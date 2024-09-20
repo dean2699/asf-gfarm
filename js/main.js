@@ -1,36 +1,31 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-const slideContainer = document.querySelector('.slides');
+const heroSection = document.querySelector('.hero');
+console.log('Hero section:', heroSection); // Check if the hero section is found
 
-// Function to show the current slide
-function showSlide(slideIndex) {
-    // Handle wrapping around the slides
-    if (slideIndex >= totalSlides) {
-        currentSlide = 0;  // Go back to the first slide
-    } else if (slideIndex < 0) {
-        currentSlide = totalSlides - 1; // Go to the last slide if we go too far back
-    } else {
-        currentSlide = slideIndex;
-    }
+const heroImages = ['images/hero1.jpg', 'images/hero2.jpg', 'images/hero3.jpg']; // Add more images as needed
+let currentIndex = 1; // Start with the second image
 
-    // Move the slide container accordingly
-    const translateXValue = -currentSlide * 100; // Move slides 100% for each slide
-    slideContainer.style.transform = `translateX(${translateXValue}%)`;
+heroSection.style.backgroundImage = `url('${heroImages[currentIndex]}')`; // Set initial background image
+
+function changeHeroImage() {
+  console.log('Changing hero image...'); // Log when the function is called
+  
+  // Fade out the current image
+  heroSection.style.transition = 'opacity 0.5s';
+  heroSection.style.opacity = 0;
+  
+  setTimeout(() => {
+    console.log('Changing background image to:', heroImages[currentIndex]); // Log the new image URL
+    
+    // Change the background image
+    heroSection.style.backgroundImage = `url('${heroImages[currentIndex]}')`;
+    
+    // Fade in the new image
+    heroSection.style.transition = 'opacity 0.5s';
+    heroSection.style.opacity = 1;
+    
+    // Update the current index
+    currentIndex = (currentIndex + 1) % heroImages.length;
+  }, 500); // Wait for 0.5 seconds before changing the image
 }
 
-// Auto-slide function
-const autoSlide = setInterval(() => {
-    showSlide(currentSlide + 1); // Automatically go to the next slide
-}, 8000); // 8 seconds interval
-
-// Event listeners for the next and prev buttons
-document.querySelector('.next').addEventListener('click', () => {
-    showSlide(currentSlide + 1);
-    clearInterval(autoSlide); // Optionally stop auto-slide after manual interaction
-});
-
-document.querySelector('.prev').addEventListener('click', () => {
-    showSlide(currentSlide - 1);
-    clearInterval(autoSlide); // Optionally stop auto-slide after manual interaction
-});
+setInterval(changeHeroImage, 6000); // 6 seconds
