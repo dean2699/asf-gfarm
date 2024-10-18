@@ -1,39 +1,54 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+// server.js
 
-const server = http.createServer((req, res) => {
-    let filePath = '.' + req.url;
-    if (filePath === './') filePath = './index.html';
+const express = require('express');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-    const extname = String(path.extname(filePath)).toLowerCase();
-    const mimeTypes = {
-        '.html': 'text/html',
-        '.js': 'text/javascript',
-        '.css': 'text/css',
-        '.png': 'image/png',
-        '.jpg': 'image/jpg',
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+// Middleware
+app.use(cors()); // Enable CORS for all routes
+app.use(bodyParser.json()); // Parse JSON bodies
+
+// Nodemailer configuration
+const transporter = nodemailer.createTransport({
+    service: 'Gmail', // Use your email service (e.g., Gmail, SendGrid)
+    auth: {
+        user: 'deanferrazzini@gmail.com', // Your email address
+        pass: 'Dean@082699' // Your email password or app password
+    }
+});
+
+// Endpoint to send confirmation email
+app.post('/send-confirmation-email', (req, res) => {
+    const { email, name, contactNumber, message, appointmentDate, appointmentTime } = req.body; // Get data from the request body
+
+    console.log('Received data:', { email, name, contactNumber, message, appointmentDate, appointmentTime }); // Log the data
+
+    // Email options
+    const mailOptions = {
+        from: 'deanferrazzini@gmail.com', // Your email address (sender)
+        to: email, // Recipient address (user's email)
+        subject: 'Appointment Confirmation', // Subject line
+        text: 'Thank you for your appointment request! We will get back to you shortly.', // Plain text body
+        html: '<p>Thank you for your appointment request! We will get back to you shortly.</p>', // HTML body
+        replyTo: email // Optional: set the reply-to address to the user's email
     };
 
-    const contentType = mimeTypes[extname] || 'application/octet-stream';
-
-    fs.readFile(filePath, (error, content) => {
+    // Send email
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            if (error.code == 'ENOENT') {
-                res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.end('404 Not Found', 'utf-8');
-            } else {
-                res.writeHead(500);
-                res.end('Server Error: ' + error.code);
-            }
-        } else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
+            console.error('Error sending email:', error);
+            return res.status(500).json({ error: 'Failed to send confirmation email.' });
         }
+        console.log('Email sent:', info.response);
+        res.status(200).json({ message: 'Confirmation email sent successfully.' });
     });
 });
 
-const port = 8080;
-server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

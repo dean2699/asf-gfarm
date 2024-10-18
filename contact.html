@@ -12,22 +12,22 @@
 <body>
 
     <!-- Navigation Bar -->
-<nav class="navbar">
-    <div class="logo-container">
-        <img src="images/logo.png" alt="Business Logo" class="logo">
-        <div class="logo-text">
-            <h1>Anthony S. Ferrazzini</h1>
-            <h2>GAMEFARM</h2>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Business Logo" class="logo">
+            <div class="logo-text">
+                <h1>Anthony S. Ferrazzini</h1>
+                <h2>GAMEFARM</h2>
+            </div>
         </div>
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="breeds.html">Breeds</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="contact.html">Inquire/Contact</a></li>
-    </ul>
-</nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="breeds.html">Breeds</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Inquire/Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Contact Us Section -->
     <section class="contact">
@@ -35,11 +35,56 @@
         <form id="contact-form">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="contact-number" placeholder="Your Contact Number" required pattern="\d{11}" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);" title="Please enter a valid 11-digit contact number">
             <textarea name="message" placeholder="Your Message" required></textarea>
+            <div class="form-group">
+                <label for="appointment-date">Preferred Appointment Date</label>
+                <input type="date" class="form-control" id="appointment-date" name="appointment-date" required>
+            </div>
+            <div class="form-group">
+                <label for="appointment-time">Preferred Appointment Time</label>
+                <input type="time" class="form-control" id="appointment-time" name="appointment-time" required>
+            </div>
             <button type="submit">Send Message</button>
         </form>
     </section>
 
     <script src="js/script.js"></script>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            const formData = new FormData(this); // Create FormData object
+    
+            // Send the form data to your server for processing
+            fetch('http://localhost:8080/send-confirmation-email', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: formData.get('email'),
+                    name: formData.get('name'),
+                    contactNumber: formData.get('contact-number'),
+                    message: formData.get('message'),
+                    appointmentDate: formData.get('appointment-date'),
+                    appointmentTime: formData.get('appointment-time')
+                }),
+                headers: {
+                    'Content-Type': 'application/json' // Specify that we are sending JSON
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Thank you for your message and appointment request! Please check your email for confirmation.");
+                    this.reset(); // Clear the form inputs
+                } else {
+                    response.json().then(data => {
+                        alert("Oops! There was a problem submitting your form");
+                    });
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+            });
+        });
+    </script>
+
 </body>
 </html>
